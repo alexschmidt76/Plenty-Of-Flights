@@ -12,3 +12,6 @@ const app = express()
 app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}`)
 })
+
+// Export the Express API for Vercel
+module.exports = app;
