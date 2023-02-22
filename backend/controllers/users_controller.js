@@ -4,6 +4,7 @@ const { User } = db
 // const { Op } = require('sequelize')
 const bcrypt = require('bcrypt')
 
+// create a new user
 users.post('/', async (req, res) => {
     let { password, ...rest } = req.body
     const user = await User.create({

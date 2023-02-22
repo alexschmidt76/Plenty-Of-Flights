@@ -1,17 +1,17 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    static associate({ FlightPath }) {
-      // flight paths
-      User.hasMany(FlightPath, {
+  class FlightPath extends Model {
+    static associate({ User }) {
+      // user
+      FlightPath.belongsTo(User, {
         foreignKey: "user_id",
-        as: "flight_paths"
+        as: "user"
       })
     }
   }
-  User.init({
-    user_id: {
+  FlightPath.init({
+    flight_path_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -20,19 +20,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    email: {
-      type: DataTypes.STRING,
+    coords: {
+      type: DataTypes.ARRAY,
       allowNull: false
     },
-    password: {
-      type: DataTypes.STRING,
+    date_created: {
+      type: DataTypes.DATE,
       allowNull: false
-    },
+    }
   }, {
     sequelize,
-    modelName: 'User',
-    tableName: 'users',
+    modelName: 'FlightPath',
+    tableName: 'flight_paths',
     timestamps: false
   });
-  return User;
+  return FlightPath;
 };
