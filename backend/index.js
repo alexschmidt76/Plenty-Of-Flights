@@ -2,12 +2,7 @@ const express = require('express')
 require('pg')
 const { Sequelize } = require('sequelize')
 require('dotenv').config()
-
 const PORT = process.env.PORT || 3001
-
-// SEQUELIZE CONNECTION
-const sequelize = new Sequelize(process.env.DATABASE_URL)
-
 const app = express()
 
 app.get('/', (req, res) => {
