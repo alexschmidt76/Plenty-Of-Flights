@@ -9,7 +9,11 @@ const sequelize = new Sequelize(process.env.DATABASE_URL)
 
 const app = express()
 
-app.use('/health', (req, res) => {
+app.get('/', (req, res) => {
+    res.send('Welcome to Plenty of Flights backend API!')
+})
+
+app.get('/health', (req, res) => {
     res.send('call to /health successful')
 })
 
