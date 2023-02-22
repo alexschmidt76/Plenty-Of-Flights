@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/users', require('./controllers/users_controller'))
+app.use('/authentication', require('./controllers/authentication_controller'))
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}`)
