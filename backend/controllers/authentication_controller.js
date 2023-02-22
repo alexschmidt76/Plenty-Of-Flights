@@ -12,7 +12,7 @@ auth.post('/', async (req, res) => {
     })
 
     // return error message if user does not exist or password is incorrect
-    if (!user || !await bcrypt.compare(req.body.password, user.password)) {
+    if (!user || !await bcrypt.compare(req.body.password, user.passwordDigest)) {
         res.status(404).json({
             message: "Could not find a user with the provided email and password."
         })

@@ -16,12 +16,20 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
+    user_id: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    aircraft_type: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     coords: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.ARRAY(DataTypes.FLOAT),
       allowNull: false
     },
     date_created: {
