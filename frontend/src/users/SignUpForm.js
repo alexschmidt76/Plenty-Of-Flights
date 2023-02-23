@@ -2,9 +2,7 @@ import { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router"
 
 function SignUpForm() {
-
 	const history = useHistory()
-
 	const [user, setUser] = useState({
 		name: '',
 		email: '',
@@ -13,7 +11,6 @@ function SignUpForm() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-
 		await fetch(`https://plenty-of-flights-backend.vercel.app/users/`, {
 			method: 'POST',
 			headers: {
@@ -21,21 +18,20 @@ function SignUpForm() {
 			},
 			body: JSON.stringify(user)
 		})
-
 		history.push(`/`)
 	}
 
 	return (
-		<main>
+		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<div>
-						<label htmlFor="name">First Name</label>
+						<label htmlFor="name">Create Your Name</label>
 						<input
 							required
-							value={user.firstName}
-							onChange={e => setUser({ ...user, firstName: e.target.value })}
+							value={user.name}
+							onChange={e => setUser({ ...user, name: e.target.value })}
 							id="name"
 							name="name"
 						/>
@@ -43,7 +39,7 @@ function SignUpForm() {
 				</div>
 				<div>
 					<div>
-						<label htmlFor="email">Email</label>
+						<label htmlFor="email">Enter Your Email Address</label>
 						<input
 							type="email"
 							required
@@ -54,13 +50,12 @@ function SignUpForm() {
 						/>
 					</div>
 					<div>
-						<label htmlFor="password">Password</label>
+						<label htmlFor="password">Create Your Password</label>
 						<input
 							type="password"
 							required
 							value={user.password}
 							onChange={e => setUser({ ...user, password: e.target.value })}
-							className="form-control"
 							id="password"
 							name="password"
 						/>
@@ -68,7 +63,7 @@ function SignUpForm() {
 				</div>
 				<input type="submit" value="Sign Up" />
 			</form>
-		</main>
+		</>
 	)
 }
 

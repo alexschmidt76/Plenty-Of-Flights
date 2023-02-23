@@ -2,6 +2,7 @@ const auth = require('express').Router()
 const db = require('../models')
 const bcrypt = require('bcrypt')
 
+
 const { User } = db
 
 auth.post('/', async (req, res) => {
