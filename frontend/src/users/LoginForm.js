@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
 import { useHistory } from "react-router"
-import { CurrentUser } from "../contexts/CurrentUser"
+import CurrentUser from "../contexts/CurrentUser"
 
 function LoginForm() {
 
-    const history = useHistory()
+    // const history = useHistory()
 
     const { setCurrentUser } = useContext(CurrentUser)
 

@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router"
 
 function SignUpForm() {
 
-	const history = useHistory()
+	// const history = useHistory()
 
 	const [user, setUser] = useState({
 		name: '',
@@ -22,7 +22,7 @@ function SignUpForm() {
 			body: JSON.stringify(user)
 		})
 
-		history.push(`/`)
+		// history.push(`/`)
 	}
 
 	return (
