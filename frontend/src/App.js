@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-import React, {useRef, useState} from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUpForm from './users/SignUpForm';
-import LoginForm from './users/LoginForm';
-import CurrentUser from './contexts/CurrentUser'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from './Home'
+import Navigation from './Navigation'
+import Error404 from './Error404'
+import SignUpForm from './users/SignUpForm'
+import LoginForm from './users/LoginForm'
+import CurrentUserProvider from './contexts/CurrentUser'
 
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-    <CurrentUser.Provider>
-        <Routes>
-          <Route exact path="/sign-up" component={<SignUpForm/>} />
-          <Route exact path="/login" component={<LoginForm/>} />
-        </Routes>
-    </CurrentUser.Provider>
-    </div>
+    <CurrentUserProvider>
+      <BrowserRouter>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/sign-up" component={SignUpForm} />
+          <Route exact path="/login" component={LoginForm} />
+          <Route path="/" component={Error404} />
+        </Switch>
+      </BrowserRouter>
+    </CurrentUserProvider>
   );
 }
 

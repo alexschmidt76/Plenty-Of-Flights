@@ -1,17 +1,30 @@
-import { createContext } from "react";
+import { useEffect, createContext, useState } from "react";
 
 
 export const CurrentUser = createContext()
 
-// function CurrentUserProvider({ children }){
+function CurrentUserProvider({ children }) {
 
-//     const [currentUser, setCurrentUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null)
 
-//     return (
-//         <CurrentUser.Provider value={{ currentUser, setCurrentUser }}>
-//             {children}
-//         </CurrentUser.Provider>
-//     )
-// }
+    useEffect(() => {
+        const getLoggedInUser = async () => {
+            let response = await fetch('https://plenty-of-flights-backend.vercel.app//authentication/profile', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            let user = await response.json()
+            setCurrentUser(user)
+        }
+        getLoggedInUser()
+    }, [])
 
-// export default CurrentUserProvider
+    return (
+        <CurrentUser.Provider value={{ currentUser, setCurrentUser }}>
+            {children}
+        </CurrentUser.Provider>
+    )
+}
+
+export default CurrentUserProvider
