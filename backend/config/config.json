@@ -13,17 +13,29 @@
     }
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "alexschmidt76",
+    "password": "QG5etVSidg9T",
+    "database": "neondb",
+    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": "true",
+        "rejectUnauthorized": "false"
+      }
+    }
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "alexschmidt76",
+    "password": "QG5etVSidg9T",
+    "database": "neondb",
+    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": "true",
+        "rejectUnauthorized": "false"
+      }
+    }
   }
 }
