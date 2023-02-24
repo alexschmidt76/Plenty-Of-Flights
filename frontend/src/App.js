@@ -20,11 +20,10 @@ function App() {
 
   const API_URL = 'https://airportdb.io/api/v1/airport/'
 
-  const handleSearch = async (e, DepartAP, ArrivalAP) => {
+  const handleSearch = async (e, depart, arrive) => {
     e.preventDefault()
-    setDap(await fetchSearch(DepartAP, API_URL))
-    setAap(await fetchSearch(ArrivalAP, API_URL))
-    
+    setDap(fetchSearch(depart, API_URL))
+    setAap(fetchSearch(arrive, API_URL))    
 }
 
   return (
@@ -39,7 +38,7 @@ function App() {
         }}>
           <SearchBar/>
           </SearchContext.Provider>
-          <DataContext.Provider value={{dap:{dap}, aap:{aap}}}>
+          <DataContext.Provider value={{dap, aap}}>
         <Routes>
           <Route path="/search" element={<SearchResults/>} />
         </Routes> 

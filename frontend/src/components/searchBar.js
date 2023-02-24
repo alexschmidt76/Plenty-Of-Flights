@@ -11,8 +11,8 @@ const SearchBar = () => {
     return(
     <div>
         <form onSubmit={(e) => {
-            handleSearch(e, depart.current.value, arrive.current.value, manufacturer.current.value, model.current.value)
-            navigate('/search')
+            // handleSearch(e, depart.current.value, arrive.current.value, manufacturer.current.value, model.current.value)
+            // navigate('/search')
         }
         }>
             
