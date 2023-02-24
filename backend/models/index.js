@@ -17,6 +17,16 @@ try {
   console.log(error)
 }
 
+async function verifyConnection() {
+  try {
+    await sequelize.authenticate()
+    console.log('Connection has been established successfully.')
+  } catch (error) {
+    console.error('Unable to connect to the database', error)
+  }
+}
+verifyConnection()
+
 /* if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
