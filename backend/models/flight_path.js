@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     coords: {
-      type: DataTypes.ARRAY(DataTypes.FLOAT),
+      type: DataTypes.ARRAY(DataTypes.GEOMETRY('POINT')),
       allowNull: false
     },
     date_created: {
