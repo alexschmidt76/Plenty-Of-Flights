@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Navigation from './Navigation'
 import Error404 from './Error404'
@@ -11,12 +11,12 @@ function App() {
     <CurrentUserProvider>
       <BrowserRouter>
         <Navigation />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/sign-up" component={SignUpForm} />
-          <Route exact path="/login" component={LoginForm} />
-          <Route path="/" component={Error404} />
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/sign-up" element={<SignUpForm/>} />
+          <Route exact path="/login" element={<LoginForm/>} />
+          <Route path="/" element={<Error404/>} />
+        </Routes>
       </BrowserRouter>
     </CurrentUserProvider>
   );

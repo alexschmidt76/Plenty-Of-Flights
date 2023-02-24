@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router"
 import { CurrentUser } from "../contexts/CurrentUser"
 
 function LoginForm() {
-    const history = useHistory()
+    const navigate = useNavigate()
     const { setCurrentUser } = useContext(CurrentUser)
     const [credentials, setCredentials] = useState({
         email: '',
@@ -13,7 +13,7 @@ function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const response = await fetch(`https://plenty-of-flights-backend.vercel.app/authentication/`, {
+        const response = await fetch(`http://localhost:3001/authentication/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,8 +24,8 @@ function LoginForm() {
 
         if (response.status === 200) {
             setCurrentUser(data.user)
-            localStorage.setItem('token', data.token)
-            history.push(`/`)
+            // localStorage.setItem('token', data.token)
+            navigate(`/`)
         } else {
             setErrorMessage(data.message)
         }

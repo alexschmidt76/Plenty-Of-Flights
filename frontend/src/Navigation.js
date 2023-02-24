@@ -1,25 +1,22 @@
-import { useState, useEffect, useContext } from 'react'
-import { useHistory } from "react-router";
+import { useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import { CurrentUser } from './contexts/CurrentUser';
 
 function Navigation() {
-
-    const history = useHistory()
-
+    const navigate = useNavigate()
     const { currentUser } = useContext(CurrentUser)
 
     let loginActions = (
         <>
-            <li>
-                <a href="#" onClick={() => history.push("/sign-up")}>
-                    Sign Up
-                </a>
-            </li>
-            <li>
-                <a href="#" onClick={() => history.push("/login")}>
-                    Login
-                </a>
-            </li>
+        <li>
+            <a href="./Home" onClick={() => navigate("/")}>Home</a>
+        </li>
+        <li>
+            <a href="../signUpForm" onClick={() => navigate("/sign-up")}>Sign Up</a>
+        </li>
+        <li>
+            <a href="../LoginForm" onClick={() => navigate("/login")}>Login</a>
+        </li>
         </>
     )
 
@@ -33,12 +30,7 @@ function Navigation() {
 
     return (
         <nav>
-            <ul>
-                <li>
-                    <a href="#" onClick={() => history.push("/")}>
-                        Home
-                    </a>
-                </li>
+            <ul>                
                 {loginActions}
             </ul>
         </nav>

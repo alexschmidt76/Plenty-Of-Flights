@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
-import { useHistory, useParams } from "react-router"
+import { useState } from "react"
+import { useNavigate } from "react-router"
 
 function SignUpForm() {
-	const history = useHistory()
+	const navigate = useNavigate()
 	const [user, setUser] = useState({
 		name: '',
 		email: '',
@@ -11,14 +11,14 @@ function SignUpForm() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		await fetch(`https://plenty-of-flights-backend.vercel.app/users/`, {
+		await fetch(`http://localhost:3001/users/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(user)
 		})
-		history.push(`/`)
+		navigate(`/`)
 	}
 
 	return (
