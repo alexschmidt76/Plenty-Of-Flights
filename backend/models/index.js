@@ -22,7 +22,7 @@ async function verifyConnection() {
     await sequelize.authenticate()
     console.log('Connection has been established successfully.')
   } catch (error) {
-    console.error('Unable to connect to the database', error)
+    console.error('Unable to connect to the database', process.env.DATABASE_URL, error)
   }
 }
 verifyConnection()
