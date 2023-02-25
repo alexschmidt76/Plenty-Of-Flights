@@ -22,17 +22,6 @@ let sequelize = new Sequelize(process.env.DATABASE_URL)
   console.log(error)
 } */
 
-async function verifyConnection() {
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database', process.env.DATABASE_URL, error)
-  }
-}
-verifyConnection()
-
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
