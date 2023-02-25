@@ -62,7 +62,7 @@ users.get('/:id/flight-paths', async (req, res) => {
             res.status(500).json(error)
         }
     } catch (error) {
-        res.status(500).json(error)
+        res.status(502).json(error)
     }
 })
 
