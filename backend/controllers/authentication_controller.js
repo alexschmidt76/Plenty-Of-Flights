@@ -2,6 +2,7 @@ const auth = require('express').Router()
 const db = require('../models')
 const bcrypt = require('bcryptjs')
 
+
 const { User } = db
 
 // authenticate user login
