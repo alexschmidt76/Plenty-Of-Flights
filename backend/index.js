@@ -40,6 +40,7 @@ app.get('/verify-connection', async (req, res) => {
     }
 })
 
+// controllers
 app.use('/users', require('./controllers/users_controller'))
 app.use('/authentication', require('./controllers/authentication_controller'))
 
