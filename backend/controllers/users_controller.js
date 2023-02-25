@@ -7,6 +7,16 @@ const { User, FlightPath } = db
 
 /* USER INFO ROUTES */
 
+// get all users
+users.get('/', async (req,  res) => {
+    try {
+        const foundUser = User.findAll()
+        res.json(foundUser)
+    } catch (err) {
+        res.json(err)
+    }
+})
+
 // create a new user
 users.post('/', async (req, res) => {
     let { password, email, ...rest } = req.body
