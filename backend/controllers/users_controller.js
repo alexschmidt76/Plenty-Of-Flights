@@ -10,7 +10,7 @@ const { User, FlightPath } = db
 // get all users
 users.get('/', async (req,  res) => {
     try {
-        const foundUser = User.findAll()
+        const foundUser = await User.findAll()
         res.json(foundUser)
     } catch (err) {
         res.json(err)
