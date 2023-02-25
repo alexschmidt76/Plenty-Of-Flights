@@ -12,8 +12,11 @@ users.get('/', async (req,  res) => {
     try {
         const foundUser = await User.findAll()
         res.json(foundUser)
-    } catch (err) {
-        res.json(err)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Database error',
+            error
+        })
     }
 })
 
