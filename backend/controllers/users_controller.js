@@ -53,10 +53,14 @@ users.delete('/:id', async (req, res) => {
 users.get('/:id/flight-paths', async (req, res) => {
     try {
         await db.sequelize.authenticate()
-        const foundFlightPaths = await FlightPath.findAll({
-            where: { user_id: req.params.id }
-        })
-        res.json(foundFlightPaths)
+        try {
+            const foundFlightPaths = await FlightPath.findAll({
+                where: { user_id: req.params.id }
+            })
+            res.json(foundFlightPaths)
+        } catch (error) {
+            res.status(500).json(error)
+        }
     } catch (error) {
         res.status(500).json(error)
     }
