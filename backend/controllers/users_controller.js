@@ -59,10 +59,16 @@ users.get('/:id/flight-paths', async (req, res) => {
             })
             res.json(foundFlightPaths)
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json({
+                message: 'Database error',
+                error
+            })
         }
     } catch (error) {
-        res.status(502).json(error)
+        res.status(502).json({
+            message: 'Unable to connect to database',
+            error
+        })
     }
 })
 
