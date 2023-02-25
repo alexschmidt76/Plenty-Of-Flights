@@ -1,17 +1,11 @@
 {
   "development": {
-    "username": "alexschmidt76",
-    "password": "QG5etVSidg9T",
-    "database": "neondb",
-    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": "true",
-        "rejectUnauthorized": "false",
-        "connectionTimeout": 60000
-      }
-    }
+    "username": "postgres",
+    "password": "EIkZ1XouvnzSO6f6",
+    "database": "postgres",
+    "host": "db.itkjevomyvragtzhejlx.supabase.co",
+    "port": "5432",
+    "dialect": "postgres"
   },
   "test": {
     "username": "alexschmidt76",
