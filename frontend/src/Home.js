@@ -6,7 +6,7 @@ const Home = () => {
     <Carousel>
       <Carousel.Item>
         <img
-          className="d-block mx-auto"
+          className="d-block mx-auto shadow p-3 rounded"
           src="../pin.jpg"
           alt="pin"
         />
@@ -17,7 +17,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block mx-auto"
+          className="d-block mx-auto shadow p-3 rounded"
           src="../landing.jpg"
           alt="landing airplane"
         />
@@ -29,7 +29,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block mx-auto"
+          className="d-block mx-auto shadow p-3 rounded"
           src="../flights.jpg"
           alt="arrows"
         />
