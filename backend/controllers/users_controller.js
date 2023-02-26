@@ -7,6 +7,19 @@ const { User, FlightPath } = db
 
 /* USER INFO ROUTES */
 
+// get all users
+users.get('/', async (req,  res) => {
+    try {
+        const foundUser = await User.findAll()
+        res.json(foundUser)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Database error',
+            error
+        })
+    }
+})
+
 
 // create a new user
 users.post('/', async (req, res) => {
@@ -122,16 +135,4 @@ users.delete('/:userId/flight-paths/:pathId', async (req, res) => {
     }
 })
 
-// get all users
-users.get('/', async (req,  res) => {
-    try {
-        const foundUser = await User.findAll()
-        res.json(foundUser)
-    } catch (error) {
-        res.status(500).json({
-            message: 'Database error',
-            error
-        })
-    }
-})
 module.exports = users
