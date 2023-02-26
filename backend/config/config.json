@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "EIkZ1XouvnzSO6f6",
-    "database": "postgres",
-    "host": "db.itkjevomyvragtzhejlx.supabase.co",
-    "port": "5432",
+    "username": "gvzcgkyt",
+    "password": "3G4f3KouZLzGr5mX1L7p3_HIObrAreJU",
+    "database": "gvzcgkyt",
+    "host": "mahmud.db.elephantsql.com",
     "dialect": "postgres"
   },
   "test": {
