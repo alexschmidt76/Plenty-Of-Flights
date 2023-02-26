@@ -30,6 +30,7 @@ users.get('/', async (req,  res) => {
                 console.log('Sequelize connection Error')
                 break;
         }
+        console.log(typeof error)
         res.status(500).json({
             message: 'Database error',
             error: error
