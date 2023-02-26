@@ -7,18 +7,6 @@ const { User, FlightPath } = db
 
 /* USER INFO ROUTES */
 
-// get all users
-users.get('/', async (req,  res) => {
-    try {
-        const foundUser = await User.findAll()
-        res.json(foundUser)
-    } catch (error) {
-        res.status(500).json({
-            message: 'Database error',
-            error
-        })
-    }
-})
 
 // create a new user
 users.post('/', async (req, res) => {
@@ -80,7 +68,7 @@ users.get('/:id/flight-paths', async (req, res) => {
 // create a new flight path
 users.post('/:id/flight-paths', async (req, res) => {
     let { coords, aircraft_type, ...rest } = req.body
-
+    
     // check if flight path already exists
     const foundPath = await FlightPath.findOne({
         where: { 
@@ -89,7 +77,7 @@ users.post('/:id/flight-paths', async (req, res) => {
             user_id: Number(req.params.id)
         }
     })
-
+    
     if (!foundPath) {
         const flightPath = await FlightPath.create({
             ...req.body,
@@ -134,4 +122,16 @@ users.delete('/:userId/flight-paths/:pathId', async (req, res) => {
     }
 })
 
+// get all users
+users.get('/', async (req,  res) => {
+    try {
+        const foundUser = await User.findAll()
+        res.json(foundUser)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Database error',
+            error
+        })
+    }
+})
 module.exports = users
