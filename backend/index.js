@@ -40,6 +40,28 @@ app.get('/verify-connection', async (req, res) => {
     }
 })
 
+// test db connection route
+app.get('/test', async (req, res) => {
+    const db = require('./models')
+    const within = async (fn, res, duration) => {
+        const id = setTimeout(() => res.json({
+            message: "There was an error with the upstream service!"
+        }), duration)
+
+        try {
+            let data = await fn()
+            clearTimeout(id)
+            res.json(data)
+        } catch (e) {
+            res.status(500).json({ message: e.message })
+        }
+    }
+    const getUsers = async () => {
+        return await db.User.findAll()
+    }
+    await within(getUsers, res, 7000)
+})  
+
 // controllers
 app.use('/users', require('./controllers/users_controller'))
 app.use('/authentication', require('./controllers/authentication_controller'))
