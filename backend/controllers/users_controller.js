@@ -10,7 +10,7 @@ const { User, FlightPath } = db
 // get all users
 users.get('/', async (req,  res) => {
     try {
-        console.log('trying to find the users')
+        console.log('trying to find the users', db)
         const foundUsers = await User.findAll()
         console.log('users here:', foundUsers)
         res.json(foundUsers)
