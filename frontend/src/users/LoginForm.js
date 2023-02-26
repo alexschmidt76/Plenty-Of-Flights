@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router"
 import { CurrentUser } from "../contexts/CurrentUser"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -32,7 +34,7 @@ function LoginForm() {
     }
 
     return (
-        <>
+        <div style={{ display: 'block', width: 700, padding: 30 }}>
             <h1>Login</h1>
             {errorMessage !== null
                 ? (
@@ -42,8 +44,33 @@ function LoginForm() {
                 )
                 : null
             }
-            <form onSubmit={handleSubmit}>
-                <div>
+            <Form onSubmit={handleSubmit}>
+			<Form.Group>
+          		<Form.Label>Email Address:</Form.Label>
+          		<Form.Control
+					required
+					type="email"
+					placeholder="Enter your email address"
+					value={credentials.email}
+					onChange={e => setCredentials({ ...credentials, email: e.target.value })}
+					id="email"
+					name="email"	
+				/>
+        	</Form.Group>
+			<Form.Group>
+          		<Form.Label>Password:</Form.Label>
+          		<Form.Control
+					required
+					type="password"
+					placeholder="Enter your own password"
+					value={credentials.password}
+					onChange={e => setCredentials({ ...credentials, password: e.target.value })}
+					id="password"
+					name="password"	
+				/>
+        	</Form.Group>
+            <Button variant="primary" type="submit">Submit</Button>
+                {/* <div>
                     <div>
                         <label htmlFor="email">Email</label>
                         <input
@@ -67,9 +94,9 @@ function LoginForm() {
                         />
                     </div>
                 </div>
-                <input type="submit" value="Login" />
-            </form>
-        </>
+                <input type="submit" value="Login" /> */}
+            </Form>
+        </div>
     )
 }
 
