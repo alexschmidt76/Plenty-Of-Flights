@@ -1,8 +1,9 @@
-const auth = require('express').Router()
-const db = require('../models')
+// node dependencies
 const bcrypt = require('bcryptjs')
+const auth = require('express').Router()
 
-
+// import db
+const db = require('../models')
 const { User } = db
 
 // authenticate user login
