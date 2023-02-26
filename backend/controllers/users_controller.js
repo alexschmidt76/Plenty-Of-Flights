@@ -2,7 +2,6 @@ const users = require('express').Router()
 const db = require('../models')
 // const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
-const { DatabaseError, InstanceError, ConnectionError } = require('sequelize')
 
 const { User, FlightPath } = db
 
