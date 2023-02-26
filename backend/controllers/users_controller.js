@@ -2,6 +2,7 @@ const users = require('express').Router()
 const db = require('../models')
 // const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
+const { DatabaseError, InstanceError, ConnectionError } = require('sequelize')
 
 const { User, FlightPath } = db
 
@@ -15,9 +16,23 @@ users.get('/', async (req,  res) => {
         console.log('users here:', foundUsers)
         res.json(foundUsers)
     } catch (error) {
+        switch (error) {
+            case DatabaseError:
+                console.log('DatabaseError')
+                break;
+            case DatabaseError:
+                console.log('Sequelize Db Error')
+                break;
+            case InstanceError:
+                console.log('Sequelize instance Error')
+                break;
+            case ConnectionError:
+                console.log('Sequelize connection Error')
+                break;
+        }
         res.status(500).json({
             message: 'Database error',
-            error
+            error: error
         })
     }
 })
