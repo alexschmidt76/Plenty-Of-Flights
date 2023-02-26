@@ -21,7 +21,6 @@ users.get('/', async (req,  res) => {
     }
 })
 
-
 // create a new user
 users.post('/', async (req, res) => {
     let { password, email, ...rest } = req.body
