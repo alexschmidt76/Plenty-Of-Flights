@@ -67,7 +67,11 @@ users.delete('/:id', async (req, res) => {
 
 // get all flight paths of a user
 users.get('/:id/flight-paths', async (req, res) => {
-    try {
+    const foundFlightPaths = await FlightPath.findAll({
+        where: { user_id: req.params.id }
+    })
+    res.json(foundFlightPaths)
+    /* try {
         const foundFlightPaths = await FlightPath.findAll({
             where: { user_id: req.params.id }
         })
@@ -77,7 +81,7 @@ users.get('/:id/flight-paths', async (req, res) => {
             message: 'Database error',
             error
         })
-    }
+    } */
 })
 
 // create a new flight path
