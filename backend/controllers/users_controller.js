@@ -15,26 +15,13 @@ users.get('/', async (req,  res) => {
         const foundUsers = await User.findAll()
         console.log('users here:', foundUsers)
         res.json(foundUsers)
+        return
     } catch (error) {
-        switch (error) {
-            case DatabaseError:
-                console.log('DatabaseError')
-                break;
-            case DatabaseError:
-                console.log('Sequelize Db Error')
-                break;
-            case InstanceError:
-                console.log('Sequelize instance Error')
-                break;
-            case ConnectionError:
-                console.log('Sequelize connection Error')
-                break;
-        }
-        console.log(typeof error)
         res.status(500).json({
             message: 'Database error',
             error: error
         })
+        return
     }
 })
 
