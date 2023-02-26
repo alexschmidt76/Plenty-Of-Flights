@@ -12,7 +12,7 @@ users.get('/', async (req,  res) => {
     try {
         console.log('trying to find the users')
         const foundUsers = await User.findAll()
-        console.log(foundUsers)
+        console.log('users here:', foundUsers)
         res.json(foundUsers)
     } catch (error) {
         res.status(500).json({

@@ -43,6 +43,7 @@ app.get('/verify-connection', async (req, res) => {
 // test db connection route
 app.get('/test', async (req, res) => {
     const db = require('./models')
+    console.log(db)
     const within = async (fn, res, duration) => {
         const id = setTimeout(() => res.json({
             message: "There was an error with the upstream service!"
