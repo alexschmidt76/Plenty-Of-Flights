@@ -5,6 +5,7 @@ import Error404 from './Error404'
 import SignUpForm from './users/SignUpForm'
 import LoginForm from './users/LoginForm'
 import CurrentUserProvider from './contexts/CurrentUser'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
