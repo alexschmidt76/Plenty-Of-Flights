@@ -69,7 +69,7 @@ function LoginForm() {
 					name="password"	
 				/>
         	</Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="primary" type="submit">Login</Button>
                 {/* <div>
                     <div>
                         <label htmlFor="email">Email</label>
