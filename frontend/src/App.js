@@ -7,8 +7,8 @@ import SearchResults from './components/searchResults';
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import Error404 from './components/Error404'
-import SignUpForm from '.components/users/SignUpForm'
-import LoginForm from '.components/users/LoginForm'
+import SignUpForm from './components/users/SignUpForm'
+import LoginForm from './components/users/LoginForm'
 import CurrentUserProvider from './context/CurrentUser'
 import { SearchContext } from './context/searchContext';
 import { DataContext } from './context/dataContext';
