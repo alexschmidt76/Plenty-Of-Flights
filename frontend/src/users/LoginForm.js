@@ -15,7 +15,7 @@ function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const response = await fetch(`http://localhost:3001/authentication/`, {
+        const response = await fetch(`https://plenty-of-flights-backend.vercel.app/authentication/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
