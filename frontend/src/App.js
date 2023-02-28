@@ -4,6 +4,12 @@ import React, {useRef, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchBar from './components/searchBar';
 import SearchResults from './components/searchResults';
+import Home from './components/Home'
+import Navigation from './components/Navigation'
+import Error404 from './components/Error404'
+import SignUpForm from '.components/users/SignUpForm'
+import LoginForm from '.components/users/LoginForm'
+import CurrentUserProvider from './context/CurrentUser'
 import { SearchContext } from './context/searchContext';
 import { DataContext } from './context/dataContext';
 import { createResource as fetchSearch} from './airportHelper';
@@ -28,7 +34,10 @@ function App() {
 
   return (
     <div className="App">
+      
+      <CurrentUserProvider>
       <Router>
+        <Navigation />
         <SearchContext.Provider value={{
           depart: searchDap,
           arrive: searchAap,
@@ -40,10 +49,15 @@ function App() {
           </SearchContext.Provider>
           <DataContext.Provider value={{dap, aap}}>
         <Routes>
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/sign-up" element={<SignUpForm/>} />
+          <Route exact path="/login" element={<LoginForm/>} />
+          <Route path="/" element={<Error404/>} />
           <Route path="/search" element={<SearchResults/>} />
         </Routes> 
         </DataContext.Provider>
       </Router>
+      </CurrentUserProvider>
     </div>
   );
 }

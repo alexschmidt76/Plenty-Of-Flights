@@ -1,5 +1,13 @@
 {
   "development": {
+    "username": "postgres",
+    "password": "EIkZ1XouvnzSO6f6",
+    "database": "postgres",
+    "host": "db.itkjevomyvragtzhejlx.supabase.co",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "test": {
     "username": "alexschmidt76",
     "password": "QG5etVSidg9T",
     "database": "neondb",
@@ -8,22 +16,23 @@
     "dialectOptions": {
       "ssl": {
         "require": "true",
-        "rejectUnauthorized": "false"
+        "rejectUnauthorized": "false",
+        "connectionTimeout": 60000
       }
     }
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "alexschmidt76",
+    "password": "QG5etVSidg9T",
+    "database": "neondb",
+    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": "true",
+        "rejectUnauthorized": "false",
+        "connectionTimeout": 60000
+      }
+    }
   }
 }
