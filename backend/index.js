@@ -4,25 +4,27 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+require('pg')
 
 // express settings
-app.use(cors())
+//app.use(cors())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// sequelize and postgres
-require('pg')
-const { Sequelize } = require('sequelize')
-
 // define port
 const PORT = process.env.PORT || 3001
 
-// controllers and routes
+/* CONTROLLERS AND ROUTES */
+
+// landing page route
 app.get('/', (req, res) => {
-    res.send('Welcome to Plenty of Flights backend API!')
+    res.json({
+        message: 'Welcome to Plenty of Flights backend API!'
+    })
 })
 
+// controllers
 app.use('/users', require('./controllers/users_controller'))
 app.use('/authentication', require('./controllers/authentication_controller'))
 
