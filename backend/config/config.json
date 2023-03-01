@@ -1,0 +1,37 @@
+{
+  "development": {
+    "username": "gvzcgkyt",
+    "password": "3G4f3KouZLzGr5mX1L7p3_HIObrAreJU",
+    "database": "gvzcgkyt",
+    "host": "mahmud.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "alexschmidt76",
+    "password": "QG5etVSidg9T",
+    "database": "neondb",
+    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": "true",
+        "rejectUnauthorized": "false",
+        "connectionTimeout": 60000
+      }
+    }
+  },
+  "production": {
+    "username": "alexschmidt76",
+    "password": "QG5etVSidg9T",
+    "database": "neondb",
+    "host": "ep-summer-snow-041342.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": "true",
+        "rejectUnauthorized": "false",
+        "connectionTimeout": 60000
+      }
+    }
+  }
+}
