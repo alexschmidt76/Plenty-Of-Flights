@@ -8,7 +8,7 @@ export default function SearchResults () {
     const renderFlight = () => {
           return(
             <Suspense fallback={<Spinner />}>
-              <Map/>  
+              <Map/> 
             </Suspense>
           )
         }
