@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router"
-import { CurrentUser } from "../contexts/CurrentUser"
+import { CurrentUser } from "../../context/CurrentUser"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 

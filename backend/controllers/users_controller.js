@@ -1,11 +1,25 @@
-const users = require('express').Router()
-const db = require('../models')
-// const { Op } = require('sequelize')
+// node dependencies
 const bcrypt = require('bcryptjs')
+const users = require('express').Router()
 
+// import db
+const db = require('../models')
 const { User, FlightPath } = db
 
 /* USER INFO ROUTES */
+
+// get all users
+users.get('/', async (req,  res) => {
+    try {
+        const foundUsers = await User.findAll()
+        res.json(foundUsers)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Database error',
+            error: error
+        })
+    }
+})
 
 // create a new user
 users.post('/', async (req, res) => {
@@ -67,7 +81,7 @@ users.get('/:id/flight-paths', async (req, res) => {
 // create a new flight path
 users.post('/:id/flight-paths', async (req, res) => {
     let { coords, aircraft_type, ...rest } = req.body
-
+    
     // check if flight path already exists
     const foundPath = await FlightPath.findOne({
         where: { 
@@ -76,7 +90,7 @@ users.post('/:id/flight-paths', async (req, res) => {
             user_id: Number(req.params.id)
         }
     })
-
+    
     if (!foundPath) {
         const flightPath = await FlightPath.create({
             ...req.body,
