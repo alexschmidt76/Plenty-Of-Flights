@@ -1,7 +1,7 @@
 import {createContext} from 'react'
 
 export const RetrieveContext = createContext({
-    data: [],
+    data: {},
     handleRetrieve: () => {},
     handleRefresh: () => {}
 })
