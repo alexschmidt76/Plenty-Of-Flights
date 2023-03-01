@@ -1,6 +1,7 @@
-import React from 'react';
-import './App.css';
+import React, {useContext} from 'react';
+import '../App.css';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api'
+import { DataContext } from '../context/dataContext'
 
 const containerStyle = {
     width: '80%',
@@ -13,14 +14,19 @@ const center = {
 };
 
 function Map() {
+  const {dap,aap} = useContext(DataContext)
+
+  const loadDap = dap.result.read()
+  const loadAap = aap.result.read()
+
     const departure = {
-        lat: 43.139,
-        lng: -89.336
+        lat: loadDap.latitude_deg,
+        lng: loadDap.longitude_deg
     };
 
     const arrival = {
-        lat: 41.98,
-        lng: -87.909
+      lat: loadAap.latitude_deg,
+      lng: loadAap.longitude_deg
     };
 
     return (
