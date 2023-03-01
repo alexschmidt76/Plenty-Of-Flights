@@ -19,6 +19,7 @@ function App() {
   let [dap,setDap] = useState(null)
   let [aap,setAap] = useState(null)
   let [airplane,setAirplane] = useState(null)
+  let[mySavedFlights,setMySavedFlights] = useState(null)
 
   let searchDap = useRef('')
   let searchAap = useRef('')
@@ -30,7 +31,29 @@ function App() {
   const handleSearch = async (e, depart, arrive) => {
     e.preventDefault()
     setDap(fetchSearch(depart, API_URL))
-    setAap(fetchSearch(arrive, API_URL))    
+    setAap(fetchSearch(arrive, API_URL))
+    
+  
+  
+  let searchInput = useRef('')
+
+  const API_URL = 'https://plenty-of-flights-backend.vercel.app/users/:id/flight-paths'
+
+  const handleSearch = (e, term) => {
+    e.preventDefault()
+    setData(fetchData(term, API_URL))
+    
+}
+
+const handleRetrieve = (e) => {
+    e.preventDefault()
+    setWishList(fetchRetrieve())
+  }
+
+  const handleRefresh = () => {
+    setWishList(fetchRetrieve())
+  }
+
 }
 
   return (

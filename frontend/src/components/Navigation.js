@@ -29,13 +29,13 @@ function Navigation() {
       loginActions = (
         <li>
           <h2>Logged in as {currentUser.name}</h2>
-          </li>
+        </li>
       )
     }
 
     return (
         <nav>
-            <ul>                
+            <ul style={{ listStyle: 'none' }}>         
                 {loginActions}
             </ul>
         </nav>
