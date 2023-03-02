@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchBar from './components/searchBar';
 import SearchResults from './components/searchResults';
@@ -21,7 +21,8 @@ function App() {
   let [dap,setDap] = useState(null)
   let [aap,setAap] = useState(null)
   let [airplane,setAirplane] = useState(null)
-  let[mySavedFlights,setMySavedFlights] = useState(null)
+  
+
 
   let searchDap = useRef('')
   let searchAap = useRef('')
@@ -35,14 +36,14 @@ function App() {
     setDap(fetchSearch(depart, API_URL))
     setAap(fetchSearch(arrive, API_URL))
   }
-  const handleRetrieve = (e) => {
-    e.preventDefault()
-    setMySavedFlights(fetchRetrieve())
-  }
+  // const handleRetrieve = (e) => {
+  //   e.preventDefault()
+  //   setMySavedFlights(fetchRetrieve())
+  // }
 
-  const handleRefresh = () => {
-    setMySavedFlights(fetchRetrieve())
-  }
+  // const handleRefresh = () => {
+  //   setMySavedFlights(fetchRetrieve())
+  // }
 
   return (
     <div className="App">
@@ -50,12 +51,6 @@ function App() {
       <CurrentUserProvider>
         <Router>
           <Navigation />
-          <RetrieveContext.Provider value={{
-              data:{wishlist},
-              handleRetrieve:handleRetrieve,
-              handleRefresh:handleRefresh
-            }}>
-
             <SearchContext.Provider value={{
               depart: searchDap,
               arrive: searchAap,
@@ -75,7 +70,6 @@ function App() {
                 <Route path="/mysavedflights" element={<MySavedFlights/>} />
               </Routes> 
             </DataContext.Provider>
-          </RetrieveContext.Provider>
         </Router>
       </CurrentUserProvider>
     </div>
