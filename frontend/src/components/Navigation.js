@@ -5,9 +5,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router"
 
 function Navigation() {
     const { currentUser } = useContext(CurrentUser)
+    const navigate = useNavigate()
 
     let loginActions = (
       <>
@@ -34,7 +36,7 @@ function Navigation() {
           <h2>Logged in as {currentUser.name}</h2>
         </li>
         <li>
-          <Button><Link to="/mysavedflights"></Link>Go to My Saved Flights</Button>
+          <Button onClick={() => {navigate("/mysavedflights")}}>Go to My Saved Flights</Button>
         </li>
       </>
       )

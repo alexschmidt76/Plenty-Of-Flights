@@ -10,9 +10,13 @@ function MySavedFlights(){
 
     useEffect(() =>{
         fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`)
-            .then(res =>res.json()).then(resData=>setFlightPaths(resData))
-    }, [currentUser]
-    )
+            .then(res => res.json())
+            .then(resData => {
+                console.log(resData)
+                setFlightPaths(resData)
+            })
+    }, [currentUser])
+
     async function handleDelete(pathid){
         await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${pathid}`, {
             method: 'DELETE',
@@ -23,15 +27,16 @@ function MySavedFlights(){
     }
 
     async function handleShow(pathid){
-        await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${pathid}`)
+        navigate(`/mysavedflights/${pathid}`)
     }
 
     const flightPathNames=()=>{
-        return flightPaths.map(path=>(
+        return flightPaths.map(({name, flight_path_id})=>(
             <li>
-                {path.name}
-                <Button onClick={handleDelete(path.flight_path_id)}>Delete Flight</Button>
-                <Button onClick={handleShow(path.flight_path_id)}>Show the Flight</Button>
+                {name}
+                <Button onClick={handleDelete(flight_path_id)}>Delete Flight</Button>
+                <Button onClick={handleShow(flight_path_id)}>Show the Flight</Button>
+                
             </li>
             ))
     }

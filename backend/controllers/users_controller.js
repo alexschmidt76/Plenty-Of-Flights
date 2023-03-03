@@ -80,29 +80,18 @@ users.get('/:id/flight-paths', async (req, res) => {
 
 // create a new flight path
 users.post('/:id/flight-paths', async (req, res) => {
-    let { coords, aircraft_type, ...rest } = req.body
-    
-    // check if flight path already exists
-    const foundPath = await FlightPath.findOne({
-        where: { 
-            coords: coords,
-            aircraft_type: aircraft_type,
-            user_id: Number(req.params.id)
-        }
+    /* res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled 🎈" }) */
+    let {dap, aap} = req.body
+
+    const flightPath = await FlightPath.create({
+        user_id: req.params.id,
+        name: `${dap.name} to ${aap.name}`,
+        departure_airport: JSON.stringify(dap),
+        arrival_airport: JSON.stringify(aap),
+        date_created: new Date()
     })
-    
-    if (!foundPath) {
-        const flightPath = await FlightPath.create({
-            ...req.body,
-            user_id: Number(req.params.id),
-            date_created: new Date()
-        })
-        res.json(flightPath)
-    } else {
-        res.status(403).json({
-            message: 'A flight path with this aircraft type and these flight coordinates already exists'
-        })
-    }
+    res.json(flightPath)
 })
 
 // get one flight path by id
