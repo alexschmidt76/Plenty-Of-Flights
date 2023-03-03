@@ -12,6 +12,7 @@ const containerStyle = {
 function Map(newFlight) {
   const {dap,aap} = useContext(DataContext)
 
+  console.log(newFlight)
   const loadDap = newFlight ? dap.result.read() : dap
   const loadAap = newFlight ? aap.result.read() : aap
 
