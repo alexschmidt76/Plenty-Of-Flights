@@ -9,11 +9,11 @@ const containerStyle = {
     height: '50vh'
 };
 
-function Map() {
+function Map(newFlight) {
   const {dap,aap} = useContext(DataContext)
 
-  const loadDap = dap.result.read()
-  const loadAap = aap.result.read()
+  const loadDap = newFlight ? dap.result.read() : dap
+  const loadAap = newFlight ? aap.result.read() : aap
 
   function locateCenter(){
     let radLatDap = (loadDap.latitude_deg * Math.PI) / 180

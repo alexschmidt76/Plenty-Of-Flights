@@ -20,13 +20,13 @@ export default function SearchResults () {
 		e.preventDefault()
     if(currentUser){
       setState('')
-      // https://plenty-of-flights-backend.vercel.app
-		  await fetch(`http://localhost:3001/users/${currentUser.user_id}/flight-paths`, {
+      console.log(dap)
+		  await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`, {
 			  method: 'POST',
 			  headers: {
 				  'Content-Type': 'application/json'
 			  },
-			  body: JSON.stringify({dap, aap})
+			  body: JSON.stringify({dap: dap.result.read(), aap: aap.result.read()})
 		  })
 		  navigate(`/`)
 	  } else {
@@ -37,7 +37,7 @@ export default function SearchResults () {
     const renderFlight = () => {
           return(
             <Suspense fallback={<Spinner />}>
-              <Map/>
+              <Map newFlight={true}/>
             </Suspense>
           )
         }

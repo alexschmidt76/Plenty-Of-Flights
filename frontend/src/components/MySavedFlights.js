@@ -17,7 +17,8 @@ function MySavedFlights(){
             })
     }, [currentUser])
 
-    async function handleDelete(pathid){
+    async function handleDelete(e, pathid){
+        e.preventDefault()
         await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${pathid}`, {
             method: 'DELETE',
             headers: {
@@ -26,7 +27,8 @@ function MySavedFlights(){
         })
     }
 
-    async function handleShow(pathid){
+    async function handleShow(e, pathid){
+        e.preventDefault()
         navigate(`/mysavedflights/${pathid}`)
     }
 
@@ -34,8 +36,8 @@ function MySavedFlights(){
         return flightPaths.map(({name, flight_path_id})=>(
             <li>
                 {name}
-                <Button onClick={handleDelete(flight_path_id)}>Delete Flight</Button>
-                <Button onClick={handleShow(flight_path_id)}>Show the Flight</Button>
+                <Button onClick={(e)=>handleDelete(e, flight_path_id)}>Delete Flight</Button>
+                <Button onClick={(e)=>handleShow(e, flight_path_id)}>Show the Flight</Button>
                 
             </li>
             ))
