@@ -32,7 +32,6 @@ export default function SearchResults () {
           return(
             <Suspense fallback={<Spinner />}>
               <Map/>
-              
             </Suspense>
           )
         }
