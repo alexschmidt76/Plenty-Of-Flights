@@ -69,7 +69,7 @@ function App() {
                 <Route path="/" element={<Error404/>} />
                 <Route path="/search" element={<SearchResults/>} />
                 <Route path="/mysavedflights" element={<MySavedFlights/>} />
-                <Route path="/mysavedflights/:id" element={<ShowSavedFlight setDap={setDap} setAap={setAap}/>}/>
+                <Route path="/mysavedflights/:id" element={<ShowSavedFlight />}/>
               </Routes> 
             </DataContext.Provider>
         </Router>
