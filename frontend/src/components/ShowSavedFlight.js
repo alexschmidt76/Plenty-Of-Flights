@@ -4,26 +4,28 @@ import Spinner from "./spinner";
 import Map from "./Map";
 import {CurrentUser} from '../context/CurrentUser';
 
-function ShowSavedFlight(setDap, setAap) {
+function ShowSavedFlight() {
     const {id} = useParams()
     const [pathName, setPathName] = useState()
+    const [dap,setDap] = useState(null)
+    const [aap,setAap] = useState(null)
     const {currentUser} = useContext(CurrentUser)
 
     useEffect(() => {
         fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${id}`)
             .then(res => res.json())
             .then(({departure_airport, arrival_airport, name}) => {
-                setDap(departure_airport)
-                setAap(arrival_airport)
+                setDap(JSON.parse(departure_airport))
+                setAap(JSON.parse(arrival_airport))
                 setPathName(name)
             })
-    }, [])
+    }, [currentUser, id])
 
     return (
         <div>
             <h1>{pathName}</h1>
             <Suspense fallback={<Spinner />}>
-              <Map newFlight={false} />
+              {dap == null ? <p>Loading...</p> : <Map newFlight={false} dap={dap} aap={aap}/>}
             </Suspense>
         </div>
     )

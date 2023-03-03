@@ -12,7 +12,6 @@ function MySavedFlights(){
         fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`)
             .then(res => res.json())
             .then(resData => {
-                console.log(resData)
                 setFlightPaths(resData)
             })
     }, [currentUser])
