@@ -3,6 +3,8 @@ import { CurrentUser } from '../context/CurrentUser';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 function Navigation() {
     const { currentUser } = useContext(CurrentUser)
@@ -27,15 +29,20 @@ function Navigation() {
 
     if (currentUser) {
       loginActions = (
+      <>
         <li>
           <h2>Logged in as {currentUser.name}</h2>
-          </li>
+        </li>
+        <li>
+          <Button><Link to="/mysavedflights"></Link>Go to My Saved Flights</Button>
+        </li>
+      </>
       )
     }
 
     return (
         <nav>
-            <ul>                
+            <ul style={{ listStyle: 'none' }}>         
                 {loginActions}
             </ul>
         </nav>

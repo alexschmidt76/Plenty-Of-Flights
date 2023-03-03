@@ -7,7 +7,7 @@ function CurrentUserProvider({ children }) {
 
     // useEffect(() => {
     //     const getLoggedInUser = async () => {
-    //         let response = await fetch('htt', {
+    //         let response = await fetch('https://plenty-of-flights-backend.vercel.app/authentication/profile', {
     //             headers: {
     //                 'Authorization': `Bearer ${localStorage.getItem('token')}`
     //             }
