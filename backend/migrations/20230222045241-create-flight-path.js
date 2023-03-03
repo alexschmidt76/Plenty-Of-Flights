@@ -17,12 +17,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      aircraft_type: {
-        type: Sequelize.STRING,
+      departure_airport: {
+        type: Sequelize.JSON,
         allowNull: false
       },
-      coords: {
-        type: Sequelize.ARRAY(Sequelize.FLOAT),
+      arrival_airport: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       date_created: {

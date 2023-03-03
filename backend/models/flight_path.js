@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    aircraft_type: {
-      type: DataTypes.STRING,
+    departure_airport: {
+      type: DataTypes.JSON,
       allowNull: false
     },
-    coords: {
-      type: DataTypes.ARRAY(DataTypes.FLOAT),
+    arrival_airport: {
+      type: DataTypes.JSON,
       allowNull: false
     },
     date_created: {
