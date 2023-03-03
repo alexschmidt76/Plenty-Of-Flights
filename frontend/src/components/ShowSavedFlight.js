@@ -1,4 +1,5 @@
-import React, {Suspense, useContext, useEffect, useParams, useState} from "react";
+import React, {Suspense, useContext, useEffect, useState} from "react";
+import { useParams } from "react-router";
 import Spinner from "./spinner";
 import Map from "./Map";
 import {CurrentUser} from '../context/CurrentUser';
@@ -22,7 +23,7 @@ function ShowSavedFlight(setDap, setAap) {
         <div>
             <h1>{pathName}</h1>
             <Suspense fallback={<Spinner />}>
-              <Map/>
+              <Map newFlight={false} />
             </Suspense>
         </div>
     )
