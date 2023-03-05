@@ -46,20 +46,54 @@ users.post('/', async (req, res) => {
     }
 })
 
+// update a user
+users.put('/:id', async (req, res) => {
+    if (req.session.userId === Number(req.params.id)) {
+        try {
+            const updatedUser = await User.update({
+                name: req.body.name,
+                email: req.body.email,
+                passwordDigest: await bcrypt.hash(req.body.password, 10)
+            },
+            {
+                where: { user_id: Number(req.params.id) }
+            })
+            res.json({
+                message: `Successfully updated user id:${req.params.id}`
+            })
+        } catch {
+            res.status(500).json({
+                message: 'No user was updated.',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No user was updated.'
+        })
+    }
+})
+
 // delete a user
 users.delete('/:id', async (req, res) => {
-    try {
-        const deletedUser = await User.destroy({
-            where: { user_id: Number(req.params.id) }
-        })
-        req.session.userId = null
-        res.json({
-            message: `Successfully deleted user id:${req.params.id}`
-        })
-    } catch (error) {
-        res.status(500).json({
-            message: 'No user was deleted',
-            error
+    if (req.session.userId === Number(req.params.id)) {
+        try {
+            const deletedUser = await User.destroy({
+                where: { user_id: Number(req.params.id) }
+            })
+            req.session.userId = null
+            res.json({
+                message: `Successfully deleted user id:${req.params.id}`
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: 'No user was deleted',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No user was deleted'
         })
     }
 })
