@@ -27,7 +27,6 @@ function LoginForm() {
 
         if (response.status === 200) {
             setCurrentUser(data.user)
-            // localStorage.setItem('token', data.token)
             navigate(`/`)
         } else {
             setErrorMessage(data.message)
@@ -35,7 +34,7 @@ function LoginForm() {
     }
 
     return (
-        <div style={{ display: 'block', width: 700, padding: 30 }}>
+        <div style={{ display: 'block', width: 700, padding: 30, margin: 'auto' }}>
             <h1>Login</h1>
             {errorMessage !== null
                 ? (

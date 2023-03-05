@@ -52,6 +52,7 @@ users.delete('/:id', async (req, res) => {
         const deletedUser = await User.destroy({
             where: { user_id: Number(req.params.id) }
         })
+        req.session.userId = null
         res.json({
             message: `Successfully deleted user id:${req.params.id}`
         })

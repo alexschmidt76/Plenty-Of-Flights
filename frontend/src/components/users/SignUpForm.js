@@ -28,7 +28,7 @@ function SignUpForm() {
 	}
 
 	return (
-		<div style={{ width: 700, padding: 30 }}>
+		<div style={{ width: 700, padding: 30, margin:'auto' }}>
 			<h1>Sign Up</h1>
 			<Form onSubmit={handleSubmit}>
 				<Form.Group>
