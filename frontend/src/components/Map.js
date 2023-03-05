@@ -67,7 +67,7 @@ function Map(props) {
     
     const { isLoaded, loadError } = useJsApiLoader({
       id: 'google-map-script',
-      googleMapsApiKey: 'AIzaSyC-oQihkOLdHknEfoIXEccwuX1e-Vjld5U'
+      googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_TOKEN
       // libraries: ['geometry', 'drawing'],
     });
 

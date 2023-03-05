@@ -13,6 +13,7 @@ function LoginForm() {
     })
     const [errorMessage, setErrorMessage] = useState(null)
 
+    // make api call to verify email and password combo
     async function handleSubmit(e) {
         e.preventDefault()
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/`, {
@@ -70,32 +71,7 @@ function LoginForm() {
 				/>
         	</Form.Group>
             <Button variant="primary" type="submit">Login</Button>
-                {/* <div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={credentials.email}
-                            onChange={e => setCredentials({ ...credentials, email: e.target.value })}
-                            id="email"
-                            name="email"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            required
-                            value={credentials.password}
-                            onChange={e => setCredentials({ ...credentials, password: e.target.value })}
-                            id="password"
-                            name="password"
-                        />
-                    </div>
-                </div>
-                <input type="submit" value="Login" /> */}
-            </Form>
+        </Form>
         </div>
     )
 }

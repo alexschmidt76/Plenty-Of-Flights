@@ -12,7 +12,7 @@ function ShowSavedFlight() {
     const {currentUser} = useContext(CurrentUser)
 
     useEffect(() => {
-        fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${id}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.user_id}/flight-paths/${id}`)
             .then(res => res.json())
             .then(({departure_airport, arrival_airport, name}) => {
                 setDap(JSON.parse(departure_airport))

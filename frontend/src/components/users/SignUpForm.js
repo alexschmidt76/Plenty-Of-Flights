@@ -13,6 +13,7 @@ function SignUpForm() {
 		password: ''
 	})
 
+	// make a new user with the given credentials
 	async function handleSubmit(e) {
 		e.preventDefault()
 		await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
