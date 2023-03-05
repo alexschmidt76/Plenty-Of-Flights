@@ -108,18 +108,24 @@ users.get('/:userId/flight-paths/:pathId', async (req, res) => {
 
 // delete one flight path by id
 users.delete('/:userId/flight-paths/:pathId', async (req, res) => {
-    try {
-        const deletedPath = await FlightPath.destroy({
-            where: { 
-                user_id: Number(req.params.userId),
-                flight_path_id: Number(req.params.pathId) 
-            }
-        })
-        res.json(`Successfully deleted flight path id:${req.params.pathId} from user id:${req.params.userId}`)
-    } catch (error) {
-        res.status(500).json({
-            message: 'No flight path was deleted',
-            error
+    if (req.session.userId === req.params.userId) {
+        try {
+            const deletedPath = await FlightPath.destroy({
+                where: { 
+                    user_id: Number(req.params.userId),
+                    flight_path_id: Number(req.params.pathId) 
+                }
+            })
+            res.json(`Successfully deleted flight path id:${req.params.pathId} from user id:${req.params.userId}`)
+        } catch (error) {
+            res.status(500).json({
+                message: 'No flight path was deleted',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No flight path was deleted'
         })
     }
 })
