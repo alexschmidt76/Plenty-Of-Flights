@@ -25,6 +25,7 @@ auth.post('/', async (req, res) => {
     }
 })
 
+// log the user out of the session
 auth.post('/log-out', (req, res) => {
     if (req.body.userId === req.session.userId) {
         req.session.userId = null
@@ -38,6 +39,7 @@ auth.post('/log-out', (req, res) => {
     }
 })
 
+// get the current signed in user from the session
 auth.get('/profile', async (req, res) => {
     try {
         let user = await User.findOne({

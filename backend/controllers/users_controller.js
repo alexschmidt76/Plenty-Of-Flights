@@ -117,8 +117,6 @@ users.get('/:id/flight-paths', async (req, res) => {
 
 // create a new flight path
 users.post('/:id/flight-paths', async (req, res) => {
-    /* res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled 🎈" }) */
     let {dap, aap} = req.body
 
     const flightPath = await FlightPath.create({

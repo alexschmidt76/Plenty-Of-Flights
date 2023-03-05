@@ -16,9 +16,8 @@ app.use(cookieSession({
     keys: [process.env.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
-let localhosting = true
 app.use(cors({
-    origin: localhosting ? 'http://localhost:3000' : process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }))
 app.use(express.static('public'))

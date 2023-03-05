@@ -18,6 +18,7 @@ let UserPage = () => {
         password: ''
     })
 
+    // function to verify a users password for update and delete funcitons
     const verifyPassword = async (credentials) => {
         console.log(currentUser)
         return await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/`, {
@@ -30,6 +31,7 @@ let UserPage = () => {
         })
     }
 
+    // update user info in database
     const handleUpdate = async (e) => {
         e.preventDefault()
         // verify the current password
@@ -61,6 +63,7 @@ let UserPage = () => {
         }
     }
 
+    // log user out
     const handleLogout = async (e) => {
         e.preventDefault()
         await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/log-out`, {
@@ -77,6 +80,7 @@ let UserPage = () => {
 		navigate(`/`)
 	}
 
+    // delete user's profile
     const handleDelete = async (e) => {
         e.preventDefault()
         const response = await verifyPassword({
@@ -100,12 +104,14 @@ let UserPage = () => {
         }
     }
 
+    // toggle the update form on or off
     const toggleUpdateForm = (e) => {
         e.preventDefault()
         setUpdateFormOn(true)
         setDeleteFormOn(false)
     }
 
+    // form for updating user profile
     const updateForm = () => {
         return (
             <div style={{ width: 700, padding: 30, margin:'auto' }}>
@@ -155,12 +161,14 @@ let UserPage = () => {
         )
     }
 
+    // toggle the delete form on or off
     const toggleDeleteForm = (e) =>{
         e.preventDefault()
         setDeleteFormOn(true)
         setUpdateFormOn(false)
     }
 
+    // form for verifying password when trying to delete account
     const deleteForm = () => {
         return (
             <div style={{ width: 700, padding: 30, margin:'auto' }}>
