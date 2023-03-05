@@ -12,7 +12,7 @@ const cors = require('cors')
 // express settings
 app.use(cookieSession({
     name: 'session',
-    sameSite: 'strict',
+    sameSite: 'none',
     keys: [process.env.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))

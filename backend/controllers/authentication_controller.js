@@ -1,6 +1,5 @@
 // node dependencies
 const bcrypt = require('bcryptjs')
-const { Router } = require('express')
 const auth = require('express').Router()
 
 // import db
