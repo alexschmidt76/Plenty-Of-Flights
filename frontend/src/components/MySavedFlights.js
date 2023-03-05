@@ -35,7 +35,9 @@ function MySavedFlights(){
     }
 
     const flightPathNames=()=>{
-        if (flightPaths.length === 0) {
+        if (currentUser === null) {
+            navigate('/')
+        } else if (flightPaths.length === 0) {
             return <p>You have no saved flights!</p>
         } else {
             return flightPaths.map(({name, flight_path_id})=>(
