@@ -9,18 +9,20 @@ function MySavedFlights(){
     const [flightPaths, setFlightPaths]=useState([])
 
     useEffect(() =>{
-        fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`)
-            .then(res => res.json())
-            .then(resData => {
-                console.log(resData)
-                setFlightPaths(resData)
-            })
+        if (currentUser !== null) {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.user_id}/flight-paths`)
+                .then(res => res.json())
+                .then(resData => {
+                    setFlightPaths(resData)
+                })
+        }
     }, [currentUser])
 
     async function handleDelete(e, pathid){
         e.preventDefault()
-        await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths/${pathid}`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.user_id}/flight-paths/${pathid}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
         }
@@ -33,14 +35,18 @@ function MySavedFlights(){
     }
 
     const flightPathNames=()=>{
-        return flightPaths.map(({name, flight_path_id})=>(
-            <li>
-                {name}
-                <Button onClick={(e)=>handleDelete(e, flight_path_id)}>Delete Flight</Button>
-                <Button onClick={(e)=>handleShow(e, flight_path_id)}>Show the Flight</Button>
-                
-            </li>
+        if (flightPaths.length === 0) {
+            return <p>You have no saved flights!</p>
+        } else {
+            return flightPaths.map(({name, flight_path_id})=>(
+                <li>
+                    {name}
+                    <Button onClick={(e)=>handleDelete(e, flight_path_id)}>Delete Flight</Button>
+                    <Button onClick={(e)=>handleShow(e, flight_path_id)}>Show the Flight</Button>
+                    
+                </li>
             ))
+        }
     }
 
     return(

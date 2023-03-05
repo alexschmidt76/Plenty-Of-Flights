@@ -1,5 +1,6 @@
 // node dependencies
 const bcrypt = require('bcryptjs')
+const { Router } = require('express')
 const auth = require('express').Router()
 
 // import db
@@ -19,7 +20,34 @@ auth.post('/', async (req, res) => {
             message: "Could not find a user with the provided email and password."
         })
     } else {
+        req.session.userId = user.user_id
         res.json({ user })
+    }
+})
+
+// log the user out of the session
+auth.post('/log-out', (req, res) => {
+    if (req.body.userId === req.session.userId) {
+        req.session.userId = null
+        res.json({
+            message: `User id:${req.body.userId} successfully signed out.`
+        })
+    } else {
+        res.status(401).json({
+            message: 'No user signed out.'
+        })
+    }
+})
+
+// get the current signed in user from the session
+auth.get('/profile', async (req, res) => {
+    try {
+        let user = await User.findOne({
+            where: {user_id : req.session.userId}
+        })
+        res.json(user)
+    } catch {
+        res.json(null)
     }
 })
 

@@ -5,7 +5,6 @@ import Spinner from './spinner';
 import {CurrentUser} from '../context/CurrentUser';
 import { DataContext } from '../context/dataContext'
 
-// import FlightPath from './flightPath';
 import Map from './Map';
 
 export default function SearchResults () {
@@ -21,7 +20,7 @@ export default function SearchResults () {
     if(currentUser){
       setState('')
       console.log(dap)
-		  await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`, {
+		  await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.user_id}/flight-paths`, {
 			  method: 'POST',
 			  headers: {
 				  'Content-Type': 'application/json'
@@ -35,20 +34,20 @@ export default function SearchResults () {
   }
 
     const renderFlight = () => {
-          return(
-            <Suspense fallback={<Spinner />}>
-              <Map newFlight={true}/>
-            </Suspense>
-          )
-        }
+      return (
+        <Suspense fallback={<Spinner />}>
+          <Map newFlight={true}/>
+        </Suspense>
+      )
+    }
       
-    return(
-        <div className="homepage">
-            {renderFlight()}
-            <Button variant="primary" type="submit" onClick={e => handleSave(e)}>
-                  Save Flight
-              </Button>
-              {state===''?null:<p>{state}</p>}
-        </div>
+    return (
+      <div className="homepage">
+        {renderFlight()}
+        <Button variant="primary" type="submit" onClick={e => handleSave(e)}>
+              Save Flight
+        </Button>
+        {state===''?null:<p>{state}</p>}
+      </div>
     )
 }

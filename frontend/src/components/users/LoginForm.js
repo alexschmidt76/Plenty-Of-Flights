@@ -13,10 +13,12 @@ function LoginForm() {
     })
     const [errorMessage, setErrorMessage] = useState(null)
 
+    // make api call to verify email and password combo
     async function handleSubmit(e) {
         e.preventDefault()
-        const response = await fetch(`https://plenty-of-flights-backend.vercel.app/authentication/`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -26,7 +28,6 @@ function LoginForm() {
 
         if (response.status === 200) {
             setCurrentUser(data.user)
-            // localStorage.setItem('token', data.token)
             navigate(`/`)
         } else {
             setErrorMessage(data.message)
@@ -34,7 +35,7 @@ function LoginForm() {
     }
 
     return (
-        <div style={{ display: 'block', width: 700, padding: 30 }}>
+        <div style={{ display: 'block', width: 700, padding: 30, margin: 'auto' }}>
             <h1>Login</h1>
             {errorMessage !== null
                 ? (
@@ -70,32 +71,7 @@ function LoginForm() {
 				/>
         	</Form.Group>
             <Button variant="primary" type="submit">Login</Button>
-                {/* <div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={credentials.email}
-                            onChange={e => setCredentials({ ...credentials, email: e.target.value })}
-                            id="email"
-                            name="email"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            required
-                            value={credentials.password}
-                            onChange={e => setCredentials({ ...credentials, password: e.target.value })}
-                            id="password"
-                            name="password"
-                        />
-                    </div>
-                </div>
-                <input type="submit" value="Login" /> */}
-            </Form>
+        </Form>
         </div>
     )
 }

@@ -9,11 +9,11 @@ const containerStyle = {
     height: '50vh'
 };
 
-function Map(newFlight) {
+function Map(props) {
   const {dap,aap} = useContext(DataContext)
 
-  const loadDap = newFlight ? dap.result.read() : dap
-  const loadAap = newFlight ? aap.result.read() : aap
+  const loadDap = props.newFlight ? dap.result.read() : props.dap
+  const loadAap = props.newFlight ? aap.result.read() : props.aap
 
   function locateCenter(){
     let radLatDap = (loadDap.latitude_deg * Math.PI) / 180
@@ -34,7 +34,6 @@ function Map(newFlight) {
     let centralLongitude = Math.atan2(Y, X);
     let centralSquareRoot = Math.sqrt((X * X) + (Y * Y));
     let centralLatitude = Math.atan2(Z, centralSquareRoot);
-    console.log((centralLatitude * 180) / Math.PI)
 
     return [(centralLatitude * 180) / Math.PI, (centralLongitude * 180) / Math.PI]
 
@@ -68,7 +67,7 @@ function Map(newFlight) {
     
     const { isLoaded, loadError } = useJsApiLoader({
       id: 'google-map-script',
-      googleMapsApiKey: 'AIzaSyC-oQihkOLdHknEfoIXEccwuX1e-Vjld5U'
+      googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_TOKEN
       // libraries: ['geometry', 'drawing'],
     });
 
