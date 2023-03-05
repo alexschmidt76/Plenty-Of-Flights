@@ -36,6 +36,8 @@ users.post('/', async (req, res) => {
             email,
             passwordDigest: await bcrypt.hash(password, 10)
         })
+        // sign in new user upon creation
+        req.session.userId = user.user_id
         res.json(user)
     } else {
         res.status(403).json({

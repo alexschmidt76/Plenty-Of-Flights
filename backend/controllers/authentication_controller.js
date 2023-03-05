@@ -25,6 +25,19 @@ auth.post('/', async (req, res) => {
     }
 })
 
+auth.post('/log-out', (req, res) => {
+    if (req.body.userId === req.session.userId) {
+        req.session.userId = null
+        res.json({
+            message: `User id:${req.body.userId} successfully signed out.`
+        })
+    } else {
+        res.status(401).json({
+            message: 'No user signed out.'
+        })
+    }
+})
+
 auth.get('/profile', async (req, res) => {
     try {
         let user = await User.findOne({

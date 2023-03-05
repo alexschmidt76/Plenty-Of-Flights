@@ -15,7 +15,6 @@ function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        console.log( process.env.BACKEND_URL)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/`, {
             method: 'POST',
             credentials: 'include',
