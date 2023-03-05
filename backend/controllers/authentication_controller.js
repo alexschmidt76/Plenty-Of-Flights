@@ -1,5 +1,6 @@
 // node dependencies
 const bcrypt = require('bcryptjs')
+const { Router } = require('express')
 const auth = require('express').Router()
 
 // import db
@@ -19,7 +20,19 @@ auth.post('/', async (req, res) => {
             message: "Could not find a user with the provided email and password."
         })
     } else {
+        req.session.userId = user.user_id
         res.json({ user })
+    }
+})
+
+auth.get('/profile', async (req, res) => {
+    try {
+        let user = await User.findOne({
+            where: {user_id : req.session.userId}
+        })
+        res.json(user)
+    } catch {
+        res.json(null)
     }
 })
 

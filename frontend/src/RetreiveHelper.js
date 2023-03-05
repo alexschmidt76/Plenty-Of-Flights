@@ -6,7 +6,7 @@ const fetchRetrieve = async () => {
             'Content-Type' : 'application/json'
         }
     }
-    const response = await fetch('https://plenty-of-flights-backend.vercel.app/users/:Id/flight-paths/',options)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/:Id/flight-paths/`,options)
                                 .catch((err) => {console.log(err)})
     const resData = await response.json()
 

@@ -14,7 +14,7 @@ function SignUpForm() {
 	async function handleSubmit(e) {
 		e.preventDefault()
         console.log(user)
-		await fetch(`https://plenty-of-flights-backend.vercel.app/users/`, {
+		await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

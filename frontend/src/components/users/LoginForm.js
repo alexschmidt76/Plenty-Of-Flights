@@ -15,8 +15,10 @@ function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const response = await fetch(`https://plenty-of-flights-backend.vercel.app/authentication/`, {
+        console.log( process.env.BACKEND_URL)
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authentication/`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
