@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { CurrentUser } from "../../context/CurrentUser";
 
 function SignUpForm() {
 	const navigate = useNavigate()
+	const { setCurrentUser } = useContext(CurrentUser)
 	const [user, setUser] = useState({
 		name: '',
 		email: '',
@@ -13,19 +15,20 @@ function SignUpForm() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-        console.log(user)
-		await fetch(`https://plenty-of-flights-backend.vercel.app/users/`, {
+		await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
 			method: 'POST',
+			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(user)
 		})
+		setCurrentUser(user)
 		navigate(`/`)
 	}
 
 	return (
-		<div style={{ width: 700, padding: 30 }}>
+		<div style={{ width: 700, padding: 30, margin:'auto' }}>
 			<h1>Sign Up</h1>
 			<Form onSubmit={handleSubmit}>
 				<Form.Group>
@@ -64,7 +67,7 @@ function SignUpForm() {
 						name="password"	
 					/>
         		</Form.Group>
-				<Button variant="primary" type="submit">Submit</Button>
+				<Button variant="primary" type="submit">Sign Up and Log In</Button>
 			</Form>
 		</div>
 	)

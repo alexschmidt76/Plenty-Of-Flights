@@ -36,6 +36,8 @@ users.post('/', async (req, res) => {
             email,
             passwordDigest: await bcrypt.hash(password, 10)
         })
+        // sign in new user upon creation
+        req.session.userId = user.user_id
         res.json(user)
     } else {
         res.status(403).json({
@@ -44,19 +46,54 @@ users.post('/', async (req, res) => {
     }
 })
 
+// update a user
+users.put('/:id', async (req, res) => {
+    if (req.session.userId === Number(req.params.id)) {
+        try {
+            const updatedUser = await User.update({
+                name: req.body.name,
+                email: req.body.email,
+                passwordDigest: await bcrypt.hash(req.body.password, 10)
+            },
+            {
+                where: { user_id: Number(req.params.id) }
+            })
+            res.json({
+                message: `Successfully updated user id:${req.params.id}`
+            })
+        } catch {
+            res.status(500).json({
+                message: 'No user was updated.',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No user was updated.'
+        })
+    }
+})
+
 // delete a user
 users.delete('/:id', async (req, res) => {
-    try {
-        const deletedUser = await User.destroy({
-            where: { user_id: Number(req.params.id) }
-        })
-        res.json({
-            message: `Successfully deleted user id:${req.params.id}`
-        })
-    } catch (error) {
-        res.status(500).json({
-            message: 'No user was deleted',
-            error
+    if (req.session.userId === Number(req.params.id)) {
+        try {
+            const deletedUser = await User.destroy({
+                where: { user_id: Number(req.params.id) }
+            })
+            req.session.userId = null
+            res.json({
+                message: `Successfully deleted user id:${req.params.id}`
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: 'No user was deleted',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No user was deleted'
         })
     }
 })
@@ -108,18 +145,24 @@ users.get('/:userId/flight-paths/:pathId', async (req, res) => {
 
 // delete one flight path by id
 users.delete('/:userId/flight-paths/:pathId', async (req, res) => {
-    try {
-        const deletedPath = await FlightPath.destroy({
-            where: { 
-                user_id: Number(req.params.userId),
-                flight_path_id: Number(req.params.pathId) 
-            }
-        })
-        res.json(`Successfully deleted flight path id:${req.params.pathId} from user id:${req.params.userId}`)
-    } catch (error) {
-        res.status(500).json({
-            message: 'No flight path was deleted',
-            error
+    if (req.session.userId === req.params.userId) {
+        try {
+            const deletedPath = await FlightPath.destroy({
+                where: { 
+                    user_id: Number(req.params.userId),
+                    flight_path_id: Number(req.params.pathId) 
+                }
+            })
+            res.json(`Successfully deleted flight path id:${req.params.pathId} from user id:${req.params.userId}`)
+        } catch (error) {
+            res.status(500).json({
+                message: 'No flight path was deleted',
+                error
+            })
+        }
+    } else {
+        res.status(401).json({
+            message: 'No flight path was deleted'
         })
     }
 })

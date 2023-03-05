@@ -21,7 +21,7 @@ export default function SearchResults () {
     if(currentUser){
       setState('')
       console.log(dap)
-		  await fetch(`https://plenty-of-flights-backend.vercel.app/users/${currentUser.user_id}/flight-paths`, {
+		  await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.user_id}/flight-paths`, {
 			  method: 'POST',
 			  headers: {
 				  'Content-Type': 'application/json'

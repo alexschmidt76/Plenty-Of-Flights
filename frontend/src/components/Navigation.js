@@ -36,7 +36,8 @@ function Navigation() {
           <h2>Logged in as {currentUser.name}</h2>
         </li>
         <li>
-          <Button onClick={() => {navigate("/mysavedflights")}}>Go to My Saved Flights</Button>
+          <Button onClick={() => navigate("/mysavedflights")}>Go to My Saved Flights</Button>
+          <Button onClick={() => navigate("/profilepage")}>My Profile</Button>
         </li>
       </>
       )
