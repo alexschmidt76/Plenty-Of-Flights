@@ -34,22 +34,26 @@ Account generation is keep simple while also using hash incription for account s
 ### Backend ###
 
 The backend is hosted seperately from the frontend.
-Below is a table of CRUD Route for the backend 
+Below are tables of the CRUD Routes for the backend.
 
-| Route Name | Route Path | HTTP Method |
-|------------|------------|-------------|
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
-| a | a | a |
+#### /users Routes ####
+| Route Name                     | Route Path                      | HTTP Method |
+|--------------------------------|---------------------------------|-------------|
+| Get all Users                  | '/'                             | GET         |
+| Create a New User              | '/'                             | POST        |
+| Update a User                  | '/:id'                          | PUT         |
+| Delete a Uesr                  | '/:id'                          | DELETE      |
+| Get all Flight Paths of a User | '/:id/flight-paths'             | GET         |
+| Create a New Flight Path       | '/:id/flight-paths'             | POST        |
+| Get one Flight Path            | '/:userId/flight-paths/:pathId' | GET         |
+| Delete one Flight Path         | '/:userId/flight-paths/:pathId' | DELETE      |
+
+#### /authentication Routes ####
+| Route Name                      | Route Path | HTTP Method |
+|---------------------------------|------------|-------------|
+| Authenticate User Login         | '/'        | POST        |
+| Log Out User                    | '/log-out' | POST        |
+| Get Logged In User from Session | '/profile' | GET         |
 
 ### API Documentation ###
 
