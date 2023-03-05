@@ -17,7 +17,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 app.use(cors({
-    origin: 'https://plenty-of-flights-frontend-git-fixing-save-21fa13-alexschmidt76.vercel.app/', // process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }))
 app.use(express.static('public'))
