@@ -20,7 +20,7 @@ auth.post('/', async (req, res) => {
         })
     } else {
         req.session.userId = user.user_id
-        console.log(req.session)
+        console.log('session', req.session)
         res.json({ user })
     }
 })
